@@ -1,0 +1,22 @@
+{
+    "name": "anchu/push",
+    "description": "A Laravel service provider for real time push notifications/messages.",
+    "keywords": ["laravel","realtime","push","notification","messaging","websocket","polling","faye","pusher","socket.io"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Harish Anchu",
+            "email": "harishanchu@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "Anchu\\Push": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
