@@ -1,6 +1,7 @@
 <?php namespace Anchu\Push;
 
 use Illuminate\Support\ServiceProvider;
+use Anchu\Push\Drivers\DriverFactory;
 
 class PushServiceProvider extends ServiceProvider {
 
@@ -28,9 +29,19 @@ class PushServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+        // The driver factory is used to create the instance of actual real time
+        // service provider class. We will inject the factory into the manager so that it may
+        // make the instance while they are actually needed and not of before.
+        $this->app->bindShared('push.factory', function($app)
+        {
+            return new DriverFactory();
+        });
+
+        // The Push manager is used to resolve various connections, since multiple
+        // connections might be managed.
         $this->app['push'] = $this->app->share(function($app)
         {
-            // return connection manager class instance
+            return new PushManager($app);
         });
         $this->app->booting(function()
         {
