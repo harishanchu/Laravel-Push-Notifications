@@ -10,11 +10,11 @@ class PushManager
     protected $app;
 
     /**
-     * The active connection instances.
+     * The active services instances.
      *
      * @var array
      */
-    protected $connections = array();
+    protected $services = array();
 
     /**
      * Create a new Push manager instance.

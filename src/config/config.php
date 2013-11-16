@@ -3,30 +3,30 @@ return array(
 
     /*
 	|--------------------------------------------------------------------------
-	| Default Push Connection Name
+	| Default Push Service Name
 	|--------------------------------------------------------------------------
 	|
-	| Here you may specify which of the Push connections below you wish
-	| to use as your default connection for all real time push messaging.
+	| Here you may specify which of the Push services below you wish
+	| to use as your default service for all real time push messaging.
 	|
 	*/
 
-    'default' => 'connection1',
+    'default' => 'service1',
 
     /*
     |--------------------------------------------------------------------------
-    | Push Connections
+    | Push services
     |--------------------------------------------------------------------------
     |
-    | Here are each of the Push connections setup for your application.
+    | Here are each of the Push service setup for your application.
     |
     */
 
-    'connections' => array(
+    'services' => array(
 
-        'connection1' => array(
+        'service1' => array(
         ),
-        'connection2' => array(
+        'service2' => array(
         ),
     ),
 );
