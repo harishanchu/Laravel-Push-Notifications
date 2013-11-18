@@ -71,4 +71,46 @@ class PushManager
 
         return $config;
     }
+
+    /**
+     * Make the push service instance.
+     *
+     * @param  string  $name
+     * @return
+     */
+    protected function makeService($name)
+    {
+        $config = $this->getConfig($name);
+        return $this->factory->make($config);
+    }
+
+    /**
+     * Get a real time service class instance.
+     *
+     * @param  string  $name
+     */
+    public function service($name = null)
+    {
+        $name = $name ?: $this->getDefaultService();
+
+        // If we haven't created this service, we'll create it based on the config
+        // provided in the application.
+        if ( ! isset($this->services[$name]))
+        {
+            $this->services[$name] = $this->makeService($name);
+        }
+
+        return $this->services[$name];
+    }
+
+    /**
+     * Return all of the created service instances.
+     *
+     * @return array
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+
 }
