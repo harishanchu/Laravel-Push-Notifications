@@ -1,7 +1,7 @@
 <?php namespace Anchu\Push;
 
 use Illuminate\Support\ServiceProvider;
-use Anchu\Push\Drivers\DriverFactory;
+use Anchu\Push\Services\ServiceFactory;
 
 class PushServiceProvider extends ServiceProvider {
 
@@ -34,7 +34,7 @@ class PushServiceProvider extends ServiceProvider {
         // make the instance while they are actually needed and not of before.
         $this->app->bindShared('push.factory', function($app)
         {
-            return new DriverFactory();
+            return new ServiceFactory();
         });
 
         // The Push manager is used to resolve various connections, since multiple
