@@ -1,5 +1,7 @@
 <?php namespace Anchu\Push;
 
+use Anchu\Push\Services\ServiceFactory;
+
 class PushManager
 {
     /**
@@ -8,6 +10,13 @@ class PushManager
      * @var \Illuminate\Foundation\Application
      */
     protected $app;
+
+    /**
+     * The database connection factory instance.
+     *
+     * @var \Anchu\Push\Services\ServiceFactory
+     */
+    protected $factory;
 
     /**
      * The active services instances.
@@ -22,9 +31,10 @@ class PushManager
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    public function __construct($app)
+    public function __construct($app, ServiceFactory $factory)
     {
         $this->app = $app;
+        $this->factory = $factory;
     }
 
     /**

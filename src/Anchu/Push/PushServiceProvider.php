@@ -41,7 +41,7 @@ class PushServiceProvider extends ServiceProvider {
         // connections might be managed.
         $this->app['push'] = $this->app->share(function($app)
         {
-            return new PushManager($app);
+            return new PushManager($app, $app['push.factory']);
         });
         $this->app->booting(function()
         {
