@@ -24,9 +24,21 @@ return array(
 
     'services' => array(
 
-        'service1' => array(
+        'pusher' => array(
+            'provider'      => 'pusher',
+            'authKey'       => '',
+            'secret'        => '',
+            'appId'         => '',
+            'timeOut'       => 30,
         ),
-        'service2' => array(
-        ),
+
+        'faye' => array(
+            'provider'      => 'pusher',
+            'host'          => '',
+            'port'          => '',
+            'mountPoint'    => '',
+            'timeOut'       => 30
+        )
+        
     ),
 );
