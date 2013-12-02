@@ -11,6 +11,6 @@ interface ServiceInterface {
      * @param bool $debug
      * @return mixed
      */
-    public function trigger( $channel, $event, $data, $debug = false);
+    public function trigger( $channel, $data, $options = array());
 
 }
