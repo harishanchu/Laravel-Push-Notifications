@@ -21,7 +21,7 @@ class ServiceFactory {
                 return new FayeService;
 
             case 'pusher':
-                return new PusherService;
+                return new PusherService($config);
 
             case 'socket-io':
                 return new SocketIoService;
