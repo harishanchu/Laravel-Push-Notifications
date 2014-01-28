@@ -12,7 +12,7 @@ class Service {
      * @return resource
      * @throws \Exception
      */
-    private function create_curl($url, $timeout, $request_method = 'GET', $query_params = array())
+    public function create_curl($url, $timeout, $request_method = 'GET', $query_params = array())
     {
         $ch = curl_init();
         if ( $ch === false )
