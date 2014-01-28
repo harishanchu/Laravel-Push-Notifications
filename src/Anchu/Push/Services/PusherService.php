@@ -53,6 +53,63 @@ class PusherService extends Service implements ServiceInterface
 
         $postValue = json_encode($postParams);
         $queryParams['body_md5'] = md5($postValue);
+
+    }
+
+    /**
+     * Build the required HMAC'd auth string
+     *
+     * @param $authKey
+     * @param $authSecret
+     * @param $requestMethod
+     * @param $requestPath
+     * @param array $queryParams
+     * @param string $authVersion
+     * @param null $authTimestamp
+     * @return string
+     */
+    public function buildAuthQueryString($authKey, $authSecret, $requestMethod, $requestPath, $queryParams = array(), $authVersion = '1.0', $authTimestamp = null)
+    {
+        $params = array();
+        $params['auth_key'] = $authKey;
+        $params['auth_timestamp'] = (is_null($authTimestamp)?time() : $authTimestamp);
+        $params['auth_version'] = $authVersion;
+
+        $params = array_merge($params, $queryParams);
+        ksort($params);
+
+        $stringToSign = "$requestMethod\n" . $requestPath . "\n" . $this->arrayImplode( '=', '&', $params );
+
+        $authSignature = hash_hmac( 'sha256', $stringToSign, $authSecret, false );
+
+        $params['auth_signature'] = $authSignature;
+        ksort($params);
+
+        $auth_query_string = $this->arrayImplode( '=', '&', $params );
+
+        return $auth_query_string;
+    }
+
+    /**
+     * Implode an array with the key and value pair giving
+     * a glue, a separator between pairs and the array
+     * to implode.
+     *
+     * @param string $glue The glue between key and value
+     * @param string $separator Separator between pairs
+     * @param array $array The array to implode
+     * @return string The imploded array
+     */
+    public static function arrayImplode( $glue, $separator, $array ) {
+        if ( ! is_array( $array ) ) return $array;
+        $string = array();
+        foreach ( $array as $key => $val ) {
+            if ( is_array( $val ) )
+                $val = implode( ',', $val );
+            $string[] = "{$key}{$glue}{$val}";
+
+        }
+        return implode( $separator, $string );
     }
     
 }
