@@ -33,12 +33,12 @@ return array(
         ),
 
         'faye' => array(
-            'provider'      => 'pusher',
+            'provider'      => 'faye',
             'host'          => '',
             'port'          => '',
             'mountPoint'    => '',
             'timeOut'       => 30
         )
-        
+
     ),
 );
