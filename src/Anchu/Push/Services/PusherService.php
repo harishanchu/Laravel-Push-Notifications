@@ -2,6 +2,7 @@
 
 class PusherService extends Service implements ServiceInterface
 {
+
     /**
      * The active pusher service configuration
      */
