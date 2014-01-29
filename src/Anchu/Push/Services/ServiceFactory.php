@@ -18,7 +18,7 @@ class ServiceFactory {
         switch ($config['provider'])
         {
             case 'faye':
-                return new FayeService;
+                return new FayeService($config);
 
             case 'pusher':
                 return new PusherService($config);
